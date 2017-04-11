@@ -41,18 +41,22 @@
 # ---------
 #
 # Copyright 2017 Your name here, unless otherwise noted.
-#
-class apache1 {
+   # $pack_name = $facts['os']['family'] ? {
+    #    'Redhat' => 'httpd',
+     #   'Debian' => 'apache2',
+    #}
 
-    $pack_name = $facts['os']['family'] ? {
-        'Redhat' => 'httpd',
-        'Debian' => 'apache2',
-    }
-
-    package { 'pack_name':
-        ensure => purged,
+   # package { '$pack_name':
+    #    ensure => purged,
         
-    }
+   # }
 
+# init.pp should not contain code it should contain what has to be called when your module is called by default .
+#so here i want to write only installation.. 
+
+class apache1 {
+    include apache::install
+
+    install apache::service
 
 }
