@@ -45,8 +45,8 @@
 class apache {
 
     $pack_name = $facts['os']['family'] ? {
-        'RedHat' = 'httpd' ,
-        'Debian' = 'apache2' ,
+        'RedHat' => 'httpd',
+        'Debian' => 'apache2',
   }
 
   package { 'name':
