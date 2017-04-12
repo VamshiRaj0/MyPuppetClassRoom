@@ -8,7 +8,7 @@ class apache::install {
         'Debian' => 'apache2',
     }
 
-    package { 'pack_name':
+    package { $pack_name:
         ensure => installed,
         
     }
