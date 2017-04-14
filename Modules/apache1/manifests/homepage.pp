@@ -1,7 +1,7 @@
  # Class: apache::homepage
  #
  #
- class apache::homepage {
+ class apache::homepage inherits apache::params {
 
         file { '/var/www/index.html':
             ensure => file,
@@ -13,14 +13,14 @@
         content => file('apache/index.html')
         }
 
-         $pack_name = $facts['os']['family'] ? {
-        'Redhat' => 'httpd',
-        'Debian' => 'apache2',
-    }
+       #  $pack_name = $facts['os']['family'] ? {
+       # 'Redhat' => 'httpd',
+       # 'Debian' => 'apache2',
+  #  }
 
 # redundant code
         service { "test":
-            name       => pack_name  
+            name       => $apache::params::pack_name  
             ensure     => running,
             enable     => true,
             hasrestart => true,
