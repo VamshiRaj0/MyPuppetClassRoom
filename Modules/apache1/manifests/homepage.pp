@@ -3,7 +3,7 @@
  #
  class apache::homepage inherits apache::params {
 
-        file { '/var/www/index.html':
+        file { '/var/www/html/index.html':
             ensure => file,
           #  owner  => owner,
          #   group  => group,
@@ -12,6 +12,16 @@
           #    source => 'puppet:///modules/index.html';  in our case
         content => file('apache/index.html')
         }
+        
+        service { "my service restart":
+            name       => $apache::params::pack_name
+            ensure     => running,
+            enable     => true,
+            hasrestart => true,
+            hasstatus  => true,
+            restart    => "",
+            # pattern    => 'name',
+        }
 
        #  $pack_name = $facts['os']['family'] ? {
        # 'Redhat' => 'httpd',
@@ -19,14 +29,14 @@
   #  }
 
 # redundant code
-        service { "test":
-            name       => $apache::params::pack_name  
-            ensure     => running,
-            enable     => true,
-            hasrestart => true,
-            hasstatus  => true,
-            restart    => ,
+      #  service { "test":
+       #     name       => $apache::params::pack_name  
+        #    ensure     => running,
+         #   enable     => true,
+          #  hasrestart => true,
+           # hasstatus  => true,
+            #restart    => ,
             # pattern    => 'test',
-        }
+        #}
 
  } 
