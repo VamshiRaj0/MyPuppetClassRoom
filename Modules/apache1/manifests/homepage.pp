@@ -11,17 +11,14 @@
         #    source => 'puppet:///modules/class/file.txt';
           #    source => 'puppet:///modules/index.html';  in our case
         content => file('apache/index.html')
-        }
+        notify  => Service["${apache::params::pack_name}")
         
-        service { "my service restart":
-            name       => $apache::params::pack_name
-            ensure     => running,
-            enable     => true,
-            hasrestart => true,
-            hasstatus  => true,
-            restart    => "",
-            # pattern    => 'name',
         }
+
+        # Above is called interpolation. putting value os a string in another string
+        # or value of a variable in other string
+        
+       # rESOURCE rELATIONSHIPS
 
        #  $pack_name = $facts['os']['family'] ? {
        # 'Redhat' => 'httpd',

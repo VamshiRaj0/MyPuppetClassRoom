@@ -56,9 +56,9 @@
 
 class apache1 {
     include apache::install
+ 
+    include apache::service
 
     include apache::homepage  
-
-    include apache::service
 
 }
